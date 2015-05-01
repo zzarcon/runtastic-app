@@ -2,29 +2,26 @@
 
 module.exports = function(environment) {
   var ENV = {
+    host: "http://intense-bastion-3210.herokuapp.com",
     modulePrefix: 'runtastic-app',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
-      }
+      FEATURES: {}
     },
-
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+    APP: {},
+    contentSecurityPolicy: {
+      'img-src': "* 'self' 'unsafe-inline'",
+      'connect-src': "*",
+      'style-src': "* 'self' 'unsafe-inline'",
+      'report-uri': "*",
+      'script-src': "* 'self' 'unsafe-inline'",
     }
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
   }
 
   if (environment === 'test') {

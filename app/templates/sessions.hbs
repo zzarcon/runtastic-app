@@ -1,0 +1,37 @@
+<header>
+  <button {{action "loadPage" "prev"}} {{bind-attr disabled="view.isFirstPage"}}>Prev</button>
+  <ul>
+    {{#each page in nearPages}}
+      <li {{action "loadPage" page}}>{{page}},</li>
+    {{/each}}
+    {{#unless view.isLastPage}}
+      <li>...,</li> <li {{action "loadPage" availablePages}}>{{availablePages}}</li>
+    {{/unless}}
+  </ul>
+  <button {{action "loadPage" "next"}} {{bind-attr disabled="view.isLastPage"}}>Next</button>
+</header>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Duration</th>
+      <th>Distance</th>
+      <th>Sport type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each session in this}}
+      {{#link-to "session" session.model.id tagName="tr"}}
+        <td>{{session.model.id}}</td>
+        <td>{{session.startDate}}</td>
+        <td>{{session.endDate}}</td>
+        <td>{{session.model.duration}}</td>
+        <td>{{session.model.distance}}</td>
+        <td>{{session.model.sportTypeId}}</td>
+      {{/link-to}}
+    {{/each}}
+  </tbody>
+</table>
+{{outlet}}
