@@ -1,3 +1,4 @@
+import Ember from "ember";
 import DS from 'ember-data';
 var attr = DS.attr;
 
@@ -7,5 +8,7 @@ export default DS.Model.extend({
   duration: attr('number'),
   distance: attr('number'),
   encodedTrace: attr(),
-  sportTypeId: attr('number')
+  sportTypeId: attr('number'),
+
+  hasEncodedTrace: Ember.computed.bool('encodedTrace')
 });

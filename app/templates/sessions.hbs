@@ -31,6 +31,9 @@
       {{#sortable-header sortBy="sportTypeId"}}
         Sport type
       {{/sortable-header}}
+      {{#sortable-header sortBy="sportTypeId"}}
+        Has encoded trace
+      {{/sortable-header}}
     </tr>
   </thead>
   <tbody>
@@ -42,6 +45,7 @@
         <td>{{session.model.duration}}</td>
         <td>{{session.model.distance}}</td>
         <td>{{session.model.sportTypeId}}</td>
+        <td>{{session.model.hasEncodedTrace}}</td>
       {{/link-to}}
     {{/each}}
   </tbody>
