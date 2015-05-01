@@ -1,9 +1,13 @@
 import Ember from 'ember';
+import SortableController from "../mixins/sortable-controller";
 
-export default Ember.ArrayController.extend({
+export default Ember.ArrayController.extend(SortableController, {
   queryParams: ['page'],
   page: 1,
   itemController: 'session',
+  sortProperty: 'id',
+  secondarySortProperty: 'id',
+  sortAscending: true,
 
   availablePages: Ember.computed.alias('pagination.available_pages'),
 

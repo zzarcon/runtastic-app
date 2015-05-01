@@ -13,12 +13,24 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Duration</th>
-      <th>Distance</th>
-      <th>Sport type</th>
+      {{#sortable-header sortBy="id"}}
+        Id
+      {{/sortable-header}}
+      {{#sortable-header sortBy="startTime"}}
+        Start time
+      {{/sortable-header}}
+      {{#sortable-header sortBy="endTime"}}
+        End time
+      {{/sortable-header}}
+      {{#sortable-header sortBy="duration"}}
+        Duration
+      {{/sortable-header}}
+      {{#sortable-header sortBy="distance"}}
+        Distance
+      {{/sortable-header}}
+      {{#sortable-header sortBy="sportTypeId"}}
+        Sport type
+      {{/sortable-header}}
     </tr>
   </thead>
   <tbody>
