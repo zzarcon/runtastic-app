@@ -1,6 +1,6 @@
 {{yield}}
 {{#if active}}
-  +
+  <div {{bind-attr class=":sort-icon sortDirection:asc:desc"}}></div>
 {{else}}
-  -
+  <div class="sort-icon"></div>
 {{/if}}

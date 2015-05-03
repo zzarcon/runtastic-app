@@ -13,7 +13,8 @@
   </ul>
   <button {{action "loadPage" "next"}} {{bind-attr disabled="view.isLastPage"}}>Next</button>
 </header>
-<div class="table-wrapper">
+<div {{bind-attr class=":table-wrapper loadingSessions:loading"}}>
+  {{#if loadingSessions}}<div class="main-loader"></div>{{/if}}
   <table {{bind-attr class="sortPropertyClass"}}>
     <thead>
       <tr>
@@ -46,10 +47,12 @@
           <td class="id">{{session.model.id}}</td>
           <td class="start-date">{{session.startDate}}</td>
           <td class="end-date">{{session.endDate}}</td>
-          <td class="duration">{{session.model.duration}}</td>
-          <td class="distance">{{session.model.distance}}</td>
+          <td class="duration">{{session.durationHours}}</td>
+          <td class="distance">{{session.distanceKm}}</td>
           <td class="sport-type">{{session.model.sportTypeId}}</td>
-          <td class="encoded-trace">{{session.model.hasEncodedTrace}}</td>
+          <td class="encoded-trace">
+            <div {{bind-attr class=":encoded-trace-badge session.model.hasEncodedTrace:enable:disable"}}></div>
+          </td>
         {{/link-to}}
       {{/each}}
     </tbody>

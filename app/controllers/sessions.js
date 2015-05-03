@@ -8,6 +8,7 @@ export default Ember.ArrayController.extend(SortableController, {
   sortProperty: 'id',
   secondarySortProperty: 'id',
   sortAscending: true,
+  loadingSessions: false,
 
   availablePages: Ember.computed.alias('pagination.available_pages'),
 
@@ -55,8 +56,8 @@ export default Ember.ArrayController.extend(SortableController, {
   }.property('this.length'),
 
   actions: {
-    loadPage: function(direcction) {
-      var page = typeof direcction === "number" ? direcction : this.get('page') + (direcction === 'next' ? 1 : -1);
+    loadPage: function(direction) {
+      var page = typeof direction === "number" ? direction : this.get('page') + (direction === 'next' ? 1 : -1);
       this.set('page', page);
     }
   }

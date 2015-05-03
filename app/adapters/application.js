@@ -1,5 +1,4 @@
 import DS from "ember-data";
-import Ember from 'ember';
 import config from 'runtastic-app/config/environment';
 
 export default DS.RESTAdapter.extend({

@@ -1,0 +1,52 @@
+$size: 10px;
+$speed: 0.75s;
+$wiggle1: $size/2;
+$color: #E74C3C;
+
+.main-loader {
+  @include animation(loader-rotate $speed*2 linear infinite);
+  height: $size;
+  width: $size;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  &:before, &:after{
+    @include transform(translate3d(-$wiggle1, -$wiggle1, 0));
+    @include animation(loader-position $speed ease-in-out infinite);
+    content: " ";
+    position: absolute;
+    height: $size;
+    width: $size;
+    background: $color;
+    border-radius: 50%;
+  }
+
+  &:after{
+    @include animation-delay($speed/2);
+    @include transform(translate3d($wiggle1, $wiggle1, 0));
+  }
+}
+
+@include keyframe('loader-position') {
+  0%{
+    @include transform(translate3d(-$wiggle1, -$wiggle1, 0));
+  }
+  50%{
+    @include transform(translate3d($wiggle1, $wiggle1, 0));
+  }
+  100%{
+    @include transform(translate3d(-$wiggle1, -$wiggle1, 0));
+  }
+}
+
+@include keyframe('loader-rotate') {
+  0%{
+    @include transform(rotate(0));
+    filter: hue-rotate(0deg);
+  }
+  100%{
+    @include transform(rotate(360deg));
+    filter: hue-rotate(360deg);
+  }
+}

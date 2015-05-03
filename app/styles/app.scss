@@ -1,10 +1,15 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css";
+@import 'bower_components/bourbon/dist/bourbon';
 @import "bower_components/sass-flex-mixin/flex";
+@import "mixins";
+@import "sort-icon";
+@import "loader";
 @import "sections/sessions";
 @import "sections/session";
 
 body{
   padding: 1rem;
+  background-color: #ECF0F1;
 }
 *{
   box-sizing: border-box;
