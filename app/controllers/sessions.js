@@ -25,11 +25,11 @@ export default Ember.ArrayController.extend(SortableController, {
       previousPages--;
 
       if (tentativePage >= 1) {
-        pages.push(tentativePage);
+        pages.push({index: tentativePage});
       }
     }
 
-    pages.push(page);
+    pages.push({index: page, isActive: true});
 
     while (nextPages) {
       tentativePage = page + 1;
@@ -37,7 +37,7 @@ export default Ember.ArrayController.extend(SortableController, {
         nextPages = 0;
       } else {
         page++;
-        pages.push(tentativePage);
+        pages.push({index: tentativePage});
         nextPages--;
       }
     }

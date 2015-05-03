@@ -1,5 +1,11 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css";
+@import "bower_components/sass-flex-mixin/flex";
+@import "sections/sessions";
 @import "sections/session";
 
-ul, li{
-  display: inline;
+body{
+  padding: 1rem;
+}
+*{
+  box-sizing: border-box;
 }

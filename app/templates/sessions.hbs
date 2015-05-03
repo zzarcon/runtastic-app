@@ -1,53 +1,58 @@
 <header>
   <button {{action "loadPage" "prev"}} {{bind-attr disabled="view.isFirstPage"}}>Prev</button>
-  <ul>
+  <ul class="pagination">
+    {{#unless view.isFirstPage}}
+      <li {{action "loadPage" 1}}>First</li> ...
+    {{/unless}}
     {{#each page in nearPages}}
-      <li {{action "loadPage" page}}>{{page}},</li>
+      <li {{action "loadPage" page.index}} {{bind-attr class="page.isActive"}}>{{page.index}}</li>
     {{/each}}
     {{#unless view.isLastPage}}
-      <li>...,</li> <li {{action "loadPage" availablePages}}>{{availablePages}}</li>
+      ... <li {{action "loadPage" availablePages}}>Last</li>
     {{/unless}}
   </ul>
   <button {{action "loadPage" "next"}} {{bind-attr disabled="view.isLastPage"}}>Next</button>
 </header>
-<table>
-  <thead>
-    <tr>
-      {{#sortable-header sortBy="id"}}
-        Id
-      {{/sortable-header}}
-      {{#sortable-header sortBy="startTime"}}
-        Start time
-      {{/sortable-header}}
-      {{#sortable-header sortBy="endTime"}}
-        End time
-      {{/sortable-header}}
-      {{#sortable-header sortBy="duration"}}
-        Duration
-      {{/sortable-header}}
-      {{#sortable-header sortBy="distance"}}
-        Distance
-      {{/sortable-header}}
-      {{#sortable-header sortBy="sportTypeId"}}
-        Sport type
-      {{/sortable-header}}
-      {{#sortable-header sortBy="sportTypeId"}}
-        Has encoded trace
-      {{/sortable-header}}
-    </tr>
-  </thead>
-  <tbody>
-    {{#each session in this}}
-      {{#link-to "session" session.model.id tagName="tr"}}
-        <td>{{session.model.id}}</td>
-        <td>{{session.startDate}}</td>
-        <td>{{session.endDate}}</td>
-        <td>{{session.model.duration}}</td>
-        <td>{{session.model.distance}}</td>
-        <td>{{session.model.sportTypeId}}</td>
-        <td>{{session.model.hasEncodedTrace}}</td>
-      {{/link-to}}
-    {{/each}}
-  </tbody>
-</table>
+<div class="table-wrapper">
+  <table {{bind-attr class="sortPropertyClass"}}>
+    <thead>
+      <tr>
+        {{#sortable-header sortBy="id"}}
+          Id
+        {{/sortable-header}}
+        {{#sortable-header sortBy="startTime"}}
+          Start time
+        {{/sortable-header}}
+        {{#sortable-header sortBy="endTime"}}
+          End time
+        {{/sortable-header}}
+        {{#sortable-header sortBy="duration"}}
+          Duration
+        {{/sortable-header}}
+        {{#sortable-header sortBy="distance"}}
+          Distance
+        {{/sortable-header}}
+        {{#sortable-header sortBy="sportTypeId"}}
+          Sport type
+        {{/sortable-header}}
+        {{#sortable-header sortBy="hasEncodedTrace"}}
+          Has encoded trace
+        {{/sortable-header}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each session in this}}
+        {{#link-to "session" session.model.id tagName="tr"}}
+          <td class="id">{{session.model.id}}</td>
+          <td class="start-date">{{session.startDate}}</td>
+          <td class="end-date">{{session.endDate}}</td>
+          <td class="duration">{{session.model.duration}}</td>
+          <td class="distance">{{session.model.distance}}</td>
+          <td class="sport-type">{{session.model.sportTypeId}}</td>
+          <td class="encoded-trace">{{session.model.hasEncodedTrace}}</td>
+        {{/link-to}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 {{outlet}}

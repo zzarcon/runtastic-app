@@ -1,0 +1,93 @@
+#sessions-section{
+  $main-color: #757575;
+  $active-color: #b3e5fc;
+  @mixin active-column() {
+    background-color: rgba($active-color, 0.5);
+  }
+  @mixin highlight() {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover{
+      background-color: $active-color;
+    }
+  }
+  @mixin shadow() {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  width: 90%;
+  margin: 0 auto;
+
+  ul, li{
+    display: inline;
+  }
+
+  header{
+    @include shadow;
+    @include flexbox;
+    @include justify-content(space-arround);
+    margin-bottom: 0.5rem;
+    color: $main-color;
+
+    button{
+      @include flex(1);
+    }
+
+    .pagination{
+      @include flex(3);
+      text-align: center;
+    }
+
+    li{
+      @include highlight;
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      border-radius: 3px;
+      font-size: 11px;
+
+      &.is-active{
+        background-color: $active-color;
+      }
+    }
+  }
+  .table-wrapper{
+    @include shadow;
+
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 2rem;
+      background-color: #ffffff;
+
+      thead{
+        th{
+          border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+        }
+      }
+      th, td{
+        padding: 1.6rem;
+        color: $main-color;
+        text-align: center;
+      }
+      tbody{
+        tr{
+          @include highlight;
+          td{
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          }
+        }
+      }
+
+      //Highlight active columns
+      &.id{td.id{@include active-column;}}
+      &.start-time{td.start-date{@include active-column;}}
+      &.end-time{td.end-date{@include active-column;}}
+      &.duration{td.duration{@include active-column;}}
+      &.distance{td.distance{@include active-column;}}
+      &.sport-type-id{td.sport-type{@include active-column;}}
+      &.has-encoded-trace{td.encoded-trace{@include active-column;}}
+    }
+  }
+}
