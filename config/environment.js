@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    host: "http://intense-bastion-3210.herokuapp.com",
+    host: "https://intense-bastion-3210.herokuapp.com",
     modulePrefix: 'runtastic-app',
     environment: environment,
     baseURL: '/',
