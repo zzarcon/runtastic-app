@@ -16,9 +16,7 @@
     box-shadow: 0 1px 3px 0 rgba(black, 0.12), 0 1px 2px 0 rgba(black, 0.24);
   }
 
-  width: 90%;
-  margin: 0 auto;
-  overflow-x: auto;
+  width: 100%;
 
   ul, li{
     display: inline;
@@ -28,6 +26,7 @@
     @include shadow;
     @include flexbox;
     @include justify-content(space-arround);
+    min-width: 45rem;
     margin-bottom: 0.5rem;
     color: $main-color;
 
@@ -96,6 +95,7 @@
         }
       }
       th, td{
+        background-color: white;
         padding: 1.6rem;
         color: $main-color;
         text-align: center;
