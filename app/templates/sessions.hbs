@@ -1,18 +1,5 @@
-<header>
-  <button {{action "loadPage" "prev"}} {{bind-attr disabled="view.isFirstPage"}}>Prev</button>
-  <ul class="pagination">
-    {{#unless view.isFirstPage}}
-      <li {{action "loadPage" 1}}>First</li> ...
-    {{/unless}}
-    {{#each page in nearPages}}
-      <li {{action "loadPage" page.index}} {{bind-attr class="page.isActive"}}>{{page.index}}</li>
-    {{/each}}
-    {{#unless view.isLastPage}}
-      ... <li {{action "loadPage" availablePages}}>Last</li>
-    {{/unless}}
-  </ul>
-  <button {{action "loadPage" "next"}} {{bind-attr disabled="view.isLastPage"}}>Next</button>
-</header>
+{{partial "header"}}
+
 <div {{bind-attr class=":table-wrapper loadingSessions:loading"}}>
   {{#if loadingSessions}}<div class="main-loader"></div>{{/if}}
   <table {{bind-attr class="sortPropertyClass"}}>

@@ -11,6 +11,7 @@ module.exports = function(environment) {
       FEATURES: {}
     },
     APP: {},
+    //Allow all
     contentSecurityPolicy: {
       'img-src': "* 'self' 'unsafe-inline'",
       'connect-src': "*",

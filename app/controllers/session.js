@@ -1,6 +1,10 @@
 import Ember from 'ember';
+
 var dateFormat = 'DD.MM.YYYY, HH.mm';
 
+/**
+ * The use of "moment" it's crucial when you want to manipulate Dates in Javascript :)
+ */
 export default Ember.Controller.extend({
   startDate: function() {
     return moment(this.get('model.startTime')).format(dateFormat);

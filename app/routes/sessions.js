@@ -6,6 +6,7 @@ export default Ember.Route.extend({
       refreshModel: true
     }
   },
+
   model: function(params) {
     var page = params.page;
     var controller = this.get('controller');

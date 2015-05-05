@@ -1,5 +1,9 @@
 import Ember from "ember";
 
+/**
+ * Implements the logic for change the properties related to sorting of the Controller that
+ * uses it.
+ */
 export default Ember.Mixin.create({
   sortProperty: '',
   secondarySortProperty: '',
@@ -9,6 +13,10 @@ export default Ember.Mixin.create({
     return [this.get('sortProperty'), this.get('secondarySortProperty')];
   }.property('sortProperty', 'secondarySortProperty', 'sortAscending'),
 
+  /**
+   * It's util for reflect the current sortProperty as html class.
+   * @return {String}
+   */
   sortPropertyClass: function() {
     //Dasherize all instances in the sortProperty
     return this.get('sortProperty').dasherize().replace(/\./g, '-');

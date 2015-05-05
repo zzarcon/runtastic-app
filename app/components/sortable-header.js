@@ -1,5 +1,9 @@
 import Ember from "ember";
 
+/**
+ * Renders a table head that fires an event when it's clicked and changes the
+ * sortproperties of a controller that implements the "SortableController" Mixin
+ */
 export default Ember.Component.extend({
   action: 'sort',
   sortDirection: Ember.computed.alias('targetObject.sortAscending'),

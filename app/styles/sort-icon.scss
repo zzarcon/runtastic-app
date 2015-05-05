@@ -3,10 +3,10 @@ $bg: #999;
 .sort-icon{
   @include transition(box-shadow 0.2s cubic-bezier(0.25, -0.25, 0.75, 1.25), transform 0.2s cubic-bezier(0.25, -0.25, 0.75, 1.25));
   @include transform(translate3d(-1px, -1px, 0));
-  right: px-to-rem(10px);
-  top: 50%;
   width: px-to-rem(2px);
   height: px-to-rem(2px);
+  right: px-to-rem(10px);
+  top: 50%;
   background: $bg;
   border-radius: 50%;
   position: absolute;

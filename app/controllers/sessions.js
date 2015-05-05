@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import SortableController from "../mixins/sortable-controller";
 
+/**
+ * Uses SortableController for change the values of "sortProperties" and "sortAscending".
+ * Also uses "queryParams" for reflect the current page on the browser url
+ */
 export default Ember.ArrayController.extend(SortableController, {
   queryParams: ['page'],
   page: 1,
@@ -12,6 +16,13 @@ export default Ember.ArrayController.extend(SortableController, {
 
   availablePages: Ember.computed.alias('pagination.available_pages'),
 
+  /**
+   * Returns the number of the near pages of the current page.
+   *
+   * Example: Current page == 6 should return [2,3,4,5,6,7,8,9,10]
+   *
+   * @return {Array}
+   */
   nearPages: function() {
     var previousPages, nextPages, tentativePage;
     var pages = [];
@@ -56,8 +67,15 @@ export default Ember.ArrayController.extend(SortableController, {
   }.property('this.length'),
 
   actions: {
-    loadPage: function(direction) {
-      var page = typeof direction === "number" ? direction : this.get('page') + (direction === 'next' ? 1 : -1);
+    /**
+     * Changes the current page to "newPage".
+     * Also admits "next" and "prev"
+     *
+     * @param  {Mixed} newPage String/Number
+     * @return {void}
+     */
+    loadPage: function(newPage) {
+      var page = typeof newPage === "number" ? newPage : this.get('page') + (newPage === 'next' ? 1 : -1);
       this.set('page', page);
     }
   }
