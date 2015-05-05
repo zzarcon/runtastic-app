@@ -3,13 +3,15 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('controller:sessions', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+moduleFor('controller:sessions', {});
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
+test('Should return the near pages based on the current page', function(assert) {
   var controller = this.subject();
-  assert.ok(controller);
+  var currentPage = 6;
+
+  controller.set('page', currentPage);
+  controller.set('pagination', {});
+
+  assert.ok(controller.get('nearPages.firstObject.index') === 2);
+  assert.ok(controller.get('nearPages.lastObject.index') === 10);
 });
