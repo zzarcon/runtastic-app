@@ -1,11 +1,14 @@
 #sessions-section{
+  $big-breakpoint: 680px;
+  $medium-breakpoint: 600px;
   $main-color: #757575;
   $active-color: #b3e5fc;
+
   @mixin active-column() {
     background-color: rgba($active-color, 0.5);
   }
   @mixin highlight() {
-    transition: all 0.3s ease;
+    @include transition(all 0.3s ease);
     cursor: pointer;
     &:hover{
       background-color: $active-color;
@@ -15,7 +18,9 @@
     background-color: white;
     box-shadow: 0 1px 3px 0 rgba(black, 0.12), 0 1px 2px 0 rgba(black, 0.24);
   }
-
+  
+  margin-top: 1rem;
+  text-align: center;
   width: 100%;
 
   ul, li{
@@ -26,7 +31,6 @@
     @include shadow;
     @include flexbox;
     @include justify-content(space-arround);
-    min-width: 45rem;
     margin-bottom: 0.5rem;
     color: $main-color;
 
@@ -34,11 +38,29 @@
       @include flex(1);
       margin: 0.5rem;
       max-width: 5rem;
+      
+      @media screen and (max-width: $medium-breakpoint) {
+        @include flex(none);
+        width: 2.5rem;
+      }
+      &.prev-button:before{
+        content: "Prev";
+        @media screen and (max-width: $medium-breakpoint) {
+          content: "←";
+        }
+      }
+      &.next-button:before{
+        content: "Next";
+        @media screen and (max-width: $medium-breakpoint) {
+          content: "→";
+        }
+      }
     }
 
     .pagination{
       @include flex(3);
       text-align: center;
+      padding: 0;
     }
 
     li{
@@ -47,27 +69,38 @@
       padding: 0.5rem;
       border-radius: 3px;
       font-size: 11px;
-
+      
       &.is-active{
         background-color: $active-color;
+      }
+    }
+    @media screen and (max-width: $medium-breakpoint) {
+      .static-page, .dots{
+        display: none;
       }
     }
   }
   .table-wrapper{
     @include shadow;
     position: relative;
-
+    display: inline-block;
+    
+    @media screen and (max-width: $medium-breakpoint) {
+      width: 100%;
+    }
+    
     &.loading{
       pointer-events: none;
 
       &:before{
         content: " ";
         position: absolute;
-        top: 0;
+        top: 6.5rem;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(black, 0.5);
+        z-index: 9;
       }
     }
 
@@ -78,12 +111,22 @@
     table{
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%;
       max-width: 100%;
-      margin-bottom: 2rem;
       background-color: #ffffff;
+      
+      @media screen and (max-width: $big-breakpoint) {
+        font-size: 11px;
+      }
+
+      @media screen and (max-width: $medium-breakpoint) {
+        width: 100%;
+        font-size: 20px;
+      }
 
       thead{
+        @media screen and (max-width: $medium-breakpoint) {
+          display: none;
+        }
         th{
           cursor: pointer;
           position: relative;
@@ -96,15 +139,49 @@
       }
       th, td{
         background-color: white;
-        padding: 1.6rem;
+        padding: 1.3rem;
         color: $main-color;
         text-align: center;
+
+        @media screen and (max-width: $big-breakpoint) {
+          padding: 1.1rem;
+        }
       }
       tbody{
         tr{
           @include highlight;
-          td{
+          
+          @media screen and (max-width: $medium-breakpoint) {
             border-bottom: 1px solid rgba(black, 0.12);
+            background-color: white !important;
+            &:nth-of-type(odd) td{
+              background-color: rgba($active-color, 0.15) !important;
+            }
+          }
+
+          &:hover td{
+            background-color: $active-color;
+          }
+          td{
+            @include transition(all 0.3s ease);
+            border-bottom: 1px solid rgba(black, 0.12);
+
+            @media screen and (max-width: $medium-breakpoint) {
+              background-color: white !important;
+              display: block;
+              text-align: left;
+              border-bottom: none;
+              font-weight: bold;
+
+              &:before{
+                content: attr(data-label)": ";
+                text-transform: capitalize;
+                color: $active-color;
+                font-weight: bold;
+                width: 10rem;
+                display: inline-block;
+              }
+            } 
           }
         }
       }
@@ -114,7 +191,10 @@
         width: 20px;
         height: 20px;
         margin: 0 auto;
-
+        
+        @media screen and (max-width: $medium-breakpoint) {
+          display: inline-block;
+        } 
         &.enable{
           background-color: #3498DB;
         }

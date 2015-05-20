@@ -1,6 +1,5 @@
-{{partial "header"}}
-
 <div {{bind-attr class=":table-wrapper loadingSessions:loading"}}>
+  {{partial "header"}}
   {{#if loadingSessions}}<div class="main-loader"></div>{{/if}}
   <table {{bind-attr class="sortPropertyClass"}}>
     <thead>
@@ -31,13 +30,13 @@
     <tbody>
       {{#each session in this}}
         {{#link-to "session" session.model.id tagName="tr"}}
-          <td class="id">{{session.model.id}}</td>
-          <td class="start-date">{{session.startDate}}</td>
-          <td class="end-date">{{session.endDate}}</td>
-          <td class="duration">{{session.durationHours}}</td>
-          <td class="distance">{{session.distanceKm}}</td>
-          <td class="sport-type">{{session.model.sportTypeId}}</td>
-          <td class="encoded-trace">
+          <td class="id" data-label="id">{{session.model.id}}</td>
+          <td class="start-date" data-label="start date">{{session.startDate}}</td>
+          <td class="end-date" data-label="end date">{{session.endDate}}</td>
+          <td class="duration" data-label="duration">{{session.durationHours}}</td>
+          <td class="distance" data-label="distance">{{session.distanceKm}}</td>
+          <td class="sport-type" data-label="port type">{{session.model.sportTypeId}}</td>
+          <td class="encoded-trace" data-label="encoded trace">
             <div {{bind-attr class=":encoded-trace-badge session.model.hasEncodedTrace:enable:disable"}}></div>
           </td>
         {{/link-to}}
