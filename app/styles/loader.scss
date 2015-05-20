@@ -28,7 +28,7 @@ $color: #E74C3C;
   }
 }
 
-@include keyframe('loader-position') {
+@include keyframes(loader-position) {
   0%{
     @include transform(translate3d(-$wiggle1, -$wiggle1, 0));
   }
@@ -40,7 +40,7 @@ $color: #E74C3C;
   }
 }
 
-@include keyframe('loader-rotate') {
+@include keyframes(loader-rotate) {
   0%{
     @include transform(rotate(0));
     filter: hue-rotate(0deg);
