@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css";
 @import 'bower_components/bourbon/dist/bourbon';
 @import "bower_components/sass-flex-mixin/flex";
@@ -11,8 +12,9 @@
 
 body{
   padding: 1rem;
-  background-color: #ECF0F1;
+  background-color: steelblue;
   font-size: $main-font-size;
+  font-family: "Roboto", helvetica;
 }
 *{
   box-sizing: border-box;

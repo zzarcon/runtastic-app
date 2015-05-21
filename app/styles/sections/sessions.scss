@@ -2,20 +2,25 @@
   $big-breakpoint: 680px;
   $medium-breakpoint: 600px;
   $main-color: #757575;
-  $active-color: #b3e5fc;
+  $active-color: #4E5066;
+  $border-radius: 5px;
 
   @mixin active-column() {
-    background-color: rgba($active-color, 0.5);
-  }
-  @mixin highlight() {
     @include transition(all 0.3s ease);
     cursor: pointer;
-    &:hover{
-      background-color: $active-color;
-    }
+    color: white;
+    background-color: $active-color;
+    text-shadow: none;
   }
+  // @mixin highlight() {
+  //   @include transition(all 0.3s ease);
+  //   cursor: pointer;
+  //   &:hover{
+  //     background-color: $active-color;
+  //   }
+  // }
   @mixin shadow() {
-    background-color: white;
+    // background-color: white;
     box-shadow: 0 1px 3px 0 rgba(black, 0.12), 0 1px 2px 0 rgba(black, 0.24);
   }
   
@@ -33,6 +38,7 @@
     @include justify-content(space-arround);
     margin-bottom: 0.5rem;
     color: $main-color;
+    border-radius: $border-radius;
 
     button{
       @include flex(1);
@@ -64,10 +70,10 @@
     }
 
     li{
-      @include highlight;
+      // @include highlight;
       border: 1px solid #ccc;
       padding: 0.5rem;
-      border-radius: 3px;
+      border-radius: $border-radius;
       font-size: 11px;
       
       &.is-active{
@@ -81,7 +87,7 @@
     }
   }
   .table-wrapper{
-    @include shadow;
+    // @include shadow;
     position: relative;
     display: inline-block;
     
@@ -112,8 +118,10 @@
       border-collapse: collapse;
       border-spacing: 0;
       max-width: 100%;
-      background-color: #ffffff;
-      
+      // background-color: white;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      border-radius: $border-radius;
+
       @media screen and (max-width: $big-breakpoint) {
         font-size: 11px;
       }
@@ -124,14 +132,26 @@
       }
 
       thead{
+        background: #1b1e24;
         @media screen and (max-width: $medium-breakpoint) {
           display: none;
         }
         th{
-          cursor: pointer;
           position: relative;
-          border-bottom: 2px solid rgba(black, 0.12);
+          color: #D5DDE5;
+          background: #1b1e24;
+          border-bottom: 4px solid #9ea7af;
+          border-right: 1px solid #343a45;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          font-weight: lighter;
 
+          &:first-child{
+            border-top-left-radius: $border-radius;
+          }
+          &:last-child{
+            border-top-right-radius: $border-radius;
+            border-right: none;
+          }
           &:hover{
             @include active-column;
           }
@@ -148,29 +168,41 @@
         }
       }
       tbody{
-        &:hover td{
-          color: transparent;
-          text-shadow: 0 0 3px #aaa;
+        @media screen and (min-width: $medium-breakpoint) {
+          &:hover td{
+            color: transparent;
+            text-shadow: 0 0 3px #aaa;
+          }
         }
         tr{
-          @include highlight;
+          // @include highlight;
           
+          &:last-child td{
+            border-bottom: none;
+            &:first-child{
+              border-bottom-left-radius: $border-radius;
+            }
+            &:last-child{
+              border-bottom-right-radius: $border-radius;
+            }
+          }
+          &:nth-of-type(odd) td{
+            background-color: #EBEBEB;
+          }
           @media screen and (max-width: $medium-breakpoint) {
             border-bottom: 1px solid rgba(black, 0.12);
             background-color: white !important;
-            &:nth-of-type(odd) td{
-              background-color: rgba($active-color, 0.15) !important;
-            }
           }
 
           &:hover td{
-            color: #444;
-            background-color: $active-color;
+            @include active-column;
           }
           td{
             @include transition(all 0.3s ease);
             border-bottom: 1px solid rgba(black, 0.12);
-
+            text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+            color: #666B85;
+            
             @media screen and (max-width: $medium-breakpoint) {
               background-color: white !important;
               display: block;
