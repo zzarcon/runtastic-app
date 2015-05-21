@@ -148,6 +148,10 @@
         }
       }
       tbody{
+        &:hover td{
+          color: transparent;
+          text-shadow: 0 0 3px #aaa;
+        }
         tr{
           @include highlight;
           
@@ -160,6 +164,7 @@
           }
 
           &:hover td{
+            color: #444;
             background-color: $active-color;
           }
           td{
