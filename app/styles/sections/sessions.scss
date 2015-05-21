@@ -1,4 +1,4 @@
-#sessions-section{    
+#sessions-section{
   margin-top: 1rem;
   text-align: center;
   width: 100%;
@@ -10,10 +10,14 @@
   header{
     @include flexbox;
     @include justify-content(space-arround);
-    margin-bottom: 0.5rem;
     color: $main-color;
-    border-radius: $border-radius;
-    background-color: $black;    
+    border-radius: $border-radius $border-radius 0 0;
+    background-color: $black;
+
+    @media screen and (min-width: $medium-breakpoint) {
+      margin-bottom: 0.5rem;
+      border-radius: $border-radius;
+    }
 
     .pagination{
       @include flex(3);
@@ -27,7 +31,7 @@
       padding: 0.5rem;
       border-radius: $border-radius;
       font-size: 11px;
-      
+
       &.is-active{
         background-color: $active-color;
         color: white;
@@ -42,23 +46,22 @@
   .table-wrapper{
     position: relative;
     display: inline-block;
-    
+
     @media screen and (max-width: $medium-breakpoint) {
       width: 100%;
     }
-    
-    &.loading{
-      pointer-events: none;
 
+    &.loading{
       &:before{
         content: " ";
         position: absolute;
-        top: 6.5rem;
+        top: 3rem;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(black, 0.5);
         z-index: 9;
+        border-radius: $border-radius $border-radius 0 0;
       }
     }
 
@@ -70,8 +73,7 @@
       border-collapse: collapse;
       border-spacing: 0;
       max-width: 100%;
-      // background-color: white;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 10px rgba(black, 0.1);
       border-radius: $border-radius;
 
       @media screen and (max-width: $big-breakpoint) {
@@ -84,17 +86,17 @@
       }
 
       thead{
-        background: #1b1e24;
+        background: $black;
         @media screen and (max-width: $medium-breakpoint) {
           display: none;
         }
         th{
           position: relative;
           color: #D5DDE5;
-          background: #1b1e24;
+          background: $black;
           border-bottom: 4px solid #9ea7af;
-          border-right: 1px solid #343a45;
-          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          border-right: 1px solid $gray;
+          text-shadow: 0 1px 1px rgba(black, 0.1);
           font-weight: lighter;
 
           &:first-child{
@@ -127,8 +129,8 @@
           }
         }
         tr{
-          // @include highlight;
-          
+          background-color: white;
+
           &:last-child td{
             border-bottom: none;
             &:first-child{
@@ -138,25 +140,28 @@
               border-bottom-right-radius: $border-radius;
             }
           }
-          &:nth-of-type(odd) td{
+          &:nth-of-type(odd){
             background-color: $light-gray;
+            td{
+              background-color: $light-gray;
+            }
           }
           @media screen and (max-width: $medium-breakpoint) {
             border-bottom: 1px solid rgba(black, 0.12);
-            background-color: white !important;
           }
 
-          &:hover td{
-            @include active-element;
+          @media screen and (min-width: $medium-breakpoint) {
+            &:hover td{
+              @include active-element;
+            }
           }
           td{
-            @include transition(all 0.3s ease);
+            @include default-transition;
             border-bottom: 1px solid rgba(black, 0.12);
-            text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+            text-shadow: -1px -1px 1px rgba(black, 0.1);
             color: #666B85;
-            
+
             @media screen and (max-width: $medium-breakpoint) {
-              background-color: white !important;
               display: block;
               text-align: left;
               border-bottom: none;
@@ -170,7 +175,7 @@
                 width: 10rem;
                 display: inline-block;
               }
-            } 
+            }
           }
         }
       }
@@ -180,26 +185,28 @@
         width: 20px;
         height: 20px;
         margin: 0 auto;
-        
+
         @media screen and (max-width: $medium-breakpoint) {
           display: inline-block;
-        } 
+        }
         &.enable{
-          background-color: #3498DB;
+          background-color: $light-blue;
         }
         &.disable{
-          background-color: #E74C3C;
+          background-color: $red;
         }
       }
 
-      //Highlight active columns
-      &.id{td.id{@include active-element;}}
-      &.start-time{td.start-date{@include active-element;}}
-      &.end-time{td.end-date{@include active-element;}}
-      &.duration{td.duration{@include active-element;}}
-      &.distance{td.distance{@include active-element;}}
-      &.sport-type-id{td.sport-type{@include active-element;}}
-      &.has-encoded-trace{td.encoded-trace{@include active-element;}}
+      @media screen and (min-width: $medium-breakpoint) {
+        //Highlight active columns
+        &.id{td.id{@include active-element;}}
+        &.start-time{td.start-date{@include active-element;}}
+        &.end-time{td.end-date{@include active-element;}}
+        &.duration{td.duration{@include active-element;}}
+        &.distance{td.distance{@include active-element;}}
+        &.sport-type-id{td.sport-type{@include active-element;}}
+        &.has-encoded-trace{td.encoded-trace{@include active-element;}}
+      }
     }
   }
 }
