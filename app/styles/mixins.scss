@@ -1,17 +1,20 @@
-@mixin keyframe ($animation_name) {
-  @-webkit-keyframes $animation_name {
-    @content;
-  }
+@mixin default-transition() {
+  @include transition(all 0.3s ease);
+}
+@mixin active-element() {
+  @include default-transition;
+  cursor: pointer;
+  color: white;
+  background-color: $active-color;
+  text-shadow: none;
+}
+@mixin highlight() {
+  @include default-transition;
+  cursor: pointer;
+  background-color: $light-gray;
 
-  @-moz-keyframes $animation_name {
-    @content;
-  }
-
-  @-o-keyframes $animation_name {
-    @content;
-  }
-
-  @keyframes $animation_name {
-    @content;
+  &:hover{
+    background-color: $active-color;
+    color: white;
   }
 }

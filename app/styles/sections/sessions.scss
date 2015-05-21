@@ -1,21 +1,6 @@
 #sessions-section{
-  $main-color: #757575;
-  $active-color: #b3e5fc;
-  @mixin active-column() {
-    background-color: rgba($active-color, 0.5);
-  }
-  @mixin highlight() {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    &:hover{
-      background-color: $active-color;
-    }
-  }
-  @mixin shadow() {
-    background-color: white;
-    box-shadow: 0 1px 3px 0 rgba(black, 0.12), 0 1px 2px 0 rgba(black, 0.24);
-  }
-
+  margin-top: 1rem;
+  text-align: center;
   width: 100%;
 
   ul, li{
@@ -23,52 +8,62 @@
   }
 
   header{
-    @include shadow;
     @include flexbox;
     @include justify-content(space-arround);
-    min-width: 45rem;
-    margin-bottom: 0.5rem;
     color: $main-color;
+    border-radius: $border-radius $border-radius 0 0;
+    background-color: $black;
 
-    button{
-      @include flex(1);
-      margin: 0.5rem;
-      max-width: 5rem;
+    @media screen and (min-width: $medium-breakpoint) {
+      margin-bottom: 0.5rem;
+      border-radius: $border-radius;
     }
 
     .pagination{
       @include flex(3);
       text-align: center;
+      padding: 0;
     }
 
     li{
       @include highlight;
-      border: 1px solid #ccc;
+      border: 1px solid white;
       padding: 0.5rem;
-      border-radius: 3px;
+      border-radius: $border-radius;
       font-size: 11px;
 
       &.is-active{
         background-color: $active-color;
+        color: white;
+      }
+    }
+    @media screen and (max-width: $medium-breakpoint) {
+      .static-page, .dots{
+        display: none;
       }
     }
   }
   .table-wrapper{
-    @include shadow;
     position: relative;
+    display: inline-block;
 
-    &.loading{
-      pointer-events: none;
-
-      &:before{
-        content: " ";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(black, 0.5);
+    @media screen and (max-width: $medium-breakpoint) {
+      width: 100%;
+      &.loading:before{
+        top: 3rem;
       }
+    }
+
+    &.loading:before{
+      content: " ";
+      position: absolute;
+      top: 2.3rem;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(black, 0.5);
+      z-index: 9;
+      border-radius: $border-radius $border-radius 0 0;
     }
 
     .main-loader{
@@ -78,33 +73,110 @@
     table{
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%;
       max-width: 100%;
-      margin-bottom: 2rem;
-      background-color: #ffffff;
+      box-shadow: 0 5px 10px rgba(black, 0.1);
+      border-radius: $border-radius;
+
+      @media screen and (max-width: $big-breakpoint) {
+        font-size: 11px;
+      }
+
+      @media screen and (max-width: $medium-breakpoint) {
+        width: 100%;
+        font-size: 20px;
+      }
 
       thead{
+        background: $black;
+        @media screen and (max-width: $medium-breakpoint) {
+          display: none;
+        }
         th{
-          cursor: pointer;
           position: relative;
-          border-bottom: 2px solid rgba(black, 0.12);
+          color: #D5DDE5;
+          background: $black;
+          border-bottom: 4px solid #9ea7af;
+          border-right: 1px solid $gray;
+          text-shadow: 0 1px 1px rgba(black, 0.1);
+          font-weight: lighter;
 
+          &:first-child{
+            border-top-left-radius: $border-radius;
+          }
+          &:last-child{
+            border-top-right-radius: $border-radius;
+            border-right: none;
+          }
           &:hover{
-            @include active-column;
+            @include active-element;
           }
         }
       }
       th, td{
         background-color: white;
-        padding: 1.6rem;
+        padding: 1.3rem;
         color: $main-color;
         text-align: center;
+
+        @media screen and (max-width: $big-breakpoint) {
+          padding: 1.1rem;
+        }
       }
       tbody{
+        @media screen and (min-width: $medium-breakpoint) {
+          &:hover td{
+            color: transparent;
+            text-shadow: 0 0 3px #aaa;
+          }
+        }
         tr{
-          @include highlight;
-          td{
+          background-color: white;
+
+          &:last-child td{
+            border-bottom: none;
+            &:first-child{
+              border-bottom-left-radius: $border-radius;
+            }
+            &:last-child{
+              border-bottom-right-radius: $border-radius;
+            }
+          }
+          &:nth-of-type(odd){
+            background-color: $light-gray;
+            td{
+              background-color: $light-gray;
+            }
+          }
+          @media screen and (max-width: $medium-breakpoint) {
             border-bottom: 1px solid rgba(black, 0.12);
+          }
+
+          @media screen and (min-width: $medium-breakpoint) {
+            &:hover td{
+              @include active-element;
+            }
+          }
+          td{
+            @include default-transition;
+            border-bottom: 1px solid rgba(black, 0.12);
+            text-shadow: -1px -1px 1px rgba(black, 0.1);
+            color: #666B85;
+
+            @media screen and (max-width: $medium-breakpoint) {
+              display: block;
+              text-align: left;
+              border-bottom: none;
+              font-weight: bold;
+
+              &:before{
+                content: attr(data-label)": ";
+                text-transform: capitalize;
+                color: $active-color;
+                font-weight: bold;
+                width: 10rem;
+                display: inline-block;
+              }
+            }
           }
         }
       }
@@ -115,22 +187,27 @@
         height: 20px;
         margin: 0 auto;
 
+        @media screen and (max-width: $medium-breakpoint) {
+          display: inline-block;
+        }
         &.enable{
-          background-color: #3498DB;
+          background-color: $light-blue;
         }
         &.disable{
-          background-color: #E74C3C;
+          background-color: $red;
         }
       }
 
-      //Highlight active columns
-      &.id{td.id{@include active-column;}}
-      &.start-time{td.start-date{@include active-column;}}
-      &.end-time{td.end-date{@include active-column;}}
-      &.duration{td.duration{@include active-column;}}
-      &.distance{td.distance{@include active-column;}}
-      &.sport-type-id{td.sport-type{@include active-column;}}
-      &.has-encoded-trace{td.encoded-trace{@include active-column;}}
+      @media screen and (min-width: $medium-breakpoint) {
+        //Highlight active columns
+        &.id{td.id{@include active-element;}}
+        &.start-time{td.start-date{@include active-element;}}
+        &.end-time{td.end-date{@include active-element;}}
+        &.duration{td.duration{@include active-element;}}
+        &.distance{td.distance{@include active-element;}}
+        &.sport-type-id{td.sport-type{@include active-element;}}
+        &.has-encoded-trace{td.encoded-trace{@include active-element;}}
+      }
     }
   }
 }
