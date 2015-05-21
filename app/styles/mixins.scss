@@ -1,4 +1,4 @@
-@mixin active-column() {
+@mixin active-element() {
   @include transition(all 0.3s ease);
   cursor: pointer;
   color: white;

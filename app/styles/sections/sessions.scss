@@ -13,30 +13,7 @@
     margin-bottom: 0.5rem;
     color: $main-color;
     border-radius: $border-radius;
-    background-color: $black;
-
-    button{
-      @include flex(1);
-      margin: 0.5rem;
-      max-width: 5rem;
-      
-      @media screen and (max-width: $medium-breakpoint) {
-        @include flex(none);
-        width: 2.5rem;
-      }
-      &.prev-button:before{
-        content: "Prev";
-        @media screen and (max-width: $medium-breakpoint) {
-          content: "←";
-        }
-      }
-      &.next-button:before{
-        content: "Next";
-        @media screen and (max-width: $medium-breakpoint) {
-          content: "→";
-        }
-      }
-    }
+    background-color: $black;    
 
     .pagination{
       @include flex(3);
@@ -128,7 +105,7 @@
             border-right: none;
           }
           &:hover{
-            @include active-column;
+            @include active-element;
           }
         }
       }
@@ -170,7 +147,7 @@
           }
 
           &:hover td{
-            @include active-column;
+            @include active-element;
           }
           td{
             @include transition(all 0.3s ease);
@@ -216,13 +193,13 @@
       }
 
       //Highlight active columns
-      &.id{td.id{@include active-column;}}
-      &.start-time{td.start-date{@include active-column;}}
-      &.end-time{td.end-date{@include active-column;}}
-      &.duration{td.duration{@include active-column;}}
-      &.distance{td.distance{@include active-column;}}
-      &.sport-type-id{td.sport-type{@include active-column;}}
-      &.has-encoded-trace{td.encoded-trace{@include active-column;}}
+      &.id{td.id{@include active-element;}}
+      &.start-time{td.start-date{@include active-element;}}
+      &.end-time{td.end-date{@include active-element;}}
+      &.duration{td.duration{@include active-element;}}
+      &.distance{td.distance{@include active-element;}}
+      &.sport-type-id{td.sport-type{@include active-element;}}
+      &.has-encoded-trace{td.encoded-trace{@include active-element;}}
     }
   }
 }
