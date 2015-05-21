@@ -1,0 +1,22 @@
+.resizeme{
+  $border-size: 65px;
+  @include transition(opacity 1s ease);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-bottom: $border-size solid #ead7b6;
+  border-left: $border-size solid transparent;
+  
+  p{
+    @include transform(rotate(45deg));
+    position: absolute;
+    right: 0;
+    bottom: -93px;
+    color: #a69370;
+    font-size: 30px;
+  }
+
+  @media screen and (max-width: $medium-breakpoint) {
+    opacity: 0;
+  }
+}
