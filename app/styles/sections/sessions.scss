@@ -1,29 +1,4 @@
-#sessions-section{
-  $big-breakpoint: 680px;
-  $medium-breakpoint: 600px;
-  $main-color: #757575;
-  $active-color: #4E5066;
-  $border-radius: 5px;
-
-  @mixin active-column() {
-    @include transition(all 0.3s ease);
-    cursor: pointer;
-    color: white;
-    background-color: $active-color;
-    text-shadow: none;
-  }
-  // @mixin highlight() {
-  //   @include transition(all 0.3s ease);
-  //   cursor: pointer;
-  //   &:hover{
-  //     background-color: $active-color;
-  //   }
-  // }
-  @mixin shadow() {
-    // background-color: white;
-    box-shadow: 0 1px 3px 0 rgba(black, 0.12), 0 1px 2px 0 rgba(black, 0.24);
-  }
-  
+#sessions-section{    
   margin-top: 1rem;
   text-align: center;
   width: 100%;
@@ -33,12 +8,12 @@
   }
 
   header{
-    @include shadow;
     @include flexbox;
     @include justify-content(space-arround);
     margin-bottom: 0.5rem;
     color: $main-color;
     border-radius: $border-radius;
+    background-color: $black;
 
     button{
       @include flex(1);
@@ -70,14 +45,15 @@
     }
 
     li{
-      // @include highlight;
-      border: 1px solid #ccc;
+      @include highlight;
+      border: 1px solid white;
       padding: 0.5rem;
       border-radius: $border-radius;
       font-size: 11px;
       
       &.is-active{
         background-color: $active-color;
+        color: white;
       }
     }
     @media screen and (max-width: $medium-breakpoint) {
@@ -87,7 +63,6 @@
     }
   }
   .table-wrapper{
-    // @include shadow;
     position: relative;
     display: inline-block;
     
@@ -187,7 +162,7 @@
             }
           }
           &:nth-of-type(odd) td{
-            background-color: #EBEBEB;
+            background-color: $light-gray;
           }
           @media screen and (max-width: $medium-breakpoint) {
             border-bottom: 1px solid rgba(black, 0.12);
